@@ -1,14 +1,33 @@
 aid: port-community-systems
 url: https://raw.githubusercontent.com/api-evangelist/port-community-systems/refs/heads/main/apis.yml
 apis:
-- aid: port-community-systems:port-community-systems-api
-  name: Port Community Systems API
+- aid: port-community-systems:portbase-api
+  name: Portbase Port Community System API
+  tags:
+  - Maritime
+  - Port
+  - Customs
+  - Cargo
+  - Netherlands
+  - REST
+  image: https://raw.githubusercontent.com/api-evangelist/port-community-systems/refs/heads/main/image.png
+  humanURL: https://www.portbase.com/en/
+  baseURL: https://api.portbase.com
+  properties:
+  - url: https://www.portbase.com/en/
+    type: Documentation
+  description: >-
+    Portbase is the Dutch Port Community System providing APIs for customs declarations, cargo manifests, vessel call notifications, berth planning, and port logistics coordination at the Port of Rotterdam and Amsterdam, connecting shipping lines, freight forwarders, customs authorities, and terminal operators.
+
+- aid: port-community-systems:ipcsa-port-community-api
+  name: IPCSA Port Community Systems API
   tags:
   - Maritime
   - Port
   - Customs
   - EDIFACT
   - Cargo
+  - International
   image: https://raw.githubusercontent.com/api-evangelist/port-community-systems/refs/heads/main/image.png
   humanURL: https://www.ipcsa.international/
   baseURL: https://api.portcommunity.example.com
@@ -16,4 +35,16 @@ apis:
   - url: https://www.ipcsa.international/
     type: Documentation
   description: >-
-    Port Community Systems (e.g., Portbase, DAKOSY) provide APIs for customs declarations, cargo manifests, vessel call data, and port logistics coordination. APIs bridge shipping lines, freight forwarders, customs authorities, and terminal operators using REST and EDIFACT protocols.
+    The International Port Community Systems Association (IPCSA) represents Port Community System operators and Maritime Single Window operators worldwide. Member PCS platforms provide APIs for customs declarations, cargo manifests, vessel call data, and port logistics coordination using REST and EDIFACT protocols.
+
+common:
+- url: https://www.ipcsa.international/
+  type: Portal
+- url: https://www.ipcsa.international/
+  type: Documentation
+- url: https://www.ipcsa.international/
+  type: Website
+maintainers:
+- name: Kin Lane
+  email: kin@apievangelist.com
+modified: '2026-03-18'
