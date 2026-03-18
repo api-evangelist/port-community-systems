@@ -1,0 +1,19 @@
+aid: port-community-systems
+url: https://raw.githubusercontent.com/api-evangelist/port-community-systems/refs/heads/main/apis.yml
+apis:
+- aid: port-community-systems:port-community-systems-api
+  name: Port Community Systems API
+  tags:
+  - Maritime
+  - Port
+  - Customs
+  - EDIFACT
+  - Cargo
+  image: https://raw.githubusercontent.com/api-evangelist/port-community-systems/refs/heads/main/image.png
+  humanURL: https://www.ipcsa.international/
+  baseURL: https://api.portcommunity.example.com
+  properties:
+  - url: https://www.ipcsa.international/
+    type: Documentation
+  description: >-
+    Port Community Systems (e.g., Portbase, DAKOSY) provide APIs for customs declarations, cargo manifests, vessel call data, and port logistics coordination. APIs bridge shipping lines, freight forwarders, customs authorities, and terminal operators using REST and EDIFACT protocols.
