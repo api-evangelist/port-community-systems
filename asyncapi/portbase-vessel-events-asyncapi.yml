@@ -1,0 +1,234 @@
+asyncapi: 2.6.0
+info:
+  title: Portbase Vessel Events API
+  version: 1.0.0
+  description: >-
+    Portbase publishes real-time vessel call and cargo events via webhooks to
+    connected port community members. Events notify subscribers of vessel
+    status changes, customs release notifications, and container gate events.
+  contact:
+    name: Portbase Support
+    url: https://www.portbase.com/en/contact/
+  license:
+    name: Portbase Terms of Service
+    url: https://www.portbase.com/en/about-portbase/terms-and-conditions/
+
+servers:
+  portbase-webhook:
+    url: https://api.portbase.com/webhooks
+    protocol: https
+    description: Portbase webhook delivery endpoint
+
+defaultContentType: application/json
+
+channels:
+  vessel-call/status-changed:
+    description: Event published when a vessel call status changes (e.g., from EXPECTED to ARRIVED)
+    subscribe:
+      operationId: onVesselCallStatusChanged
+      summary: Vessel call status change event
+      description: >-
+        Triggered when a vessel's status changes at the port. Includes
+        updated timestamps for ATA, ATD, or berth allocation.
+      tags:
+        - name: VesselCalls
+      message:
+        $ref: '#/components/messages/VesselCallStatusChangedEvent'
+
+  cargo-manifest/accepted:
+    description: Event published when a cargo manifest is accepted by Dutch Customs
+    subscribe:
+      operationId: onCargoManifestAccepted
+      summary: Cargo manifest accepted event
+      description: Triggered when the manifest is validated and accepted by customs.
+      tags:
+        - name: CargoManifests
+      message:
+        $ref: '#/components/messages/CargoManifestAcceptedEvent'
+
+  container/customs-released:
+    description: Event published when a container receives customs release
+    subscribe:
+      operationId: onContainerCustomsReleased
+      summary: Container customs released event
+      description: >-
+        Triggered when Dutch Customs issues a release order for a container,
+        allowing it to exit the port.
+      tags:
+        - name: Containers
+      message:
+        $ref: '#/components/messages/ContainerCustomsReleasedEvent'
+
+  container/gate-out:
+    description: Event published when a container departs the terminal gate
+    subscribe:
+      operationId: onContainerGateOut
+      summary: Container gate-out event
+      description: Triggered when a container passes through the terminal gate upon pick-up.
+      tags:
+        - name: Containers
+      message:
+        $ref: '#/components/messages/ContainerGateOutEvent'
+
+components:
+  messages:
+    VesselCallStatusChangedEvent:
+      name: VesselCallStatusChanged
+      title: Vessel Call Status Changed
+      summary: Fired when vessel call status changes
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          portbase-event-id:
+            type: string
+            format: uuid
+          portbase-event-timestamp:
+            type: string
+            format: date-time
+          portbase-event-type:
+            type: string
+            const: vessel-call.status-changed
+      payload:
+        $ref: '#/components/schemas/VesselCallStatusChangedPayload'
+
+    CargoManifestAcceptedEvent:
+      name: CargoManifestAccepted
+      title: Cargo Manifest Accepted
+      summary: Fired when a manifest is accepted by customs
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/CargoManifestAcceptedPayload'
+
+    ContainerCustomsReleasedEvent:
+      name: ContainerCustomsReleased
+      title: Container Customs Released
+      summary: Fired when a container is customs released
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ContainerCustomsReleasedPayload'
+
+    ContainerGateOutEvent:
+      name: ContainerGateOut
+      title: Container Gate Out
+      summary: Fired when a container exits through the terminal gate
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ContainerGateOutPayload'
+
+  schemas:
+    VesselCallStatusChangedPayload:
+      type: object
+      required:
+        - eventId
+        - eventTimestamp
+        - vesselCallId
+        - previousStatus
+        - newStatus
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventTimestamp:
+          type: string
+          format: date-time
+        vesselCallId:
+          type: string
+        imoNumber:
+          type: string
+        vesselName:
+          type: string
+        portCode:
+          type: string
+        terminalCode:
+          type: string
+        previousStatus:
+          type: string
+          enum: [EXPECTED, ARRIVED, BERTHED, DEPARTED]
+        newStatus:
+          type: string
+          enum: [EXPECTED, ARRIVED, BERTHED, DEPARTED, CANCELLED]
+        ata:
+          type: string
+          format: date-time
+          nullable: true
+        atd:
+          type: string
+          format: date-time
+          nullable: true
+
+    CargoManifestAcceptedPayload:
+      type: object
+      required:
+        - eventId
+        - eventTimestamp
+        - manifestId
+        - vesselCallId
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventTimestamp:
+          type: string
+          format: date-time
+        manifestId:
+          type: string
+        vesselCallId:
+          type: string
+        acceptanceDatetime:
+          type: string
+          format: date-time
+        declarantId:
+          type: string
+
+    ContainerCustomsReleasedPayload:
+      type: object
+      required:
+        - eventId
+        - eventTimestamp
+        - containerNumber
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventTimestamp:
+          type: string
+          format: date-time
+        containerNumber:
+          type: string
+        vesselCallId:
+          type: string
+        terminalCode:
+          type: string
+        releaseDatetime:
+          type: string
+          format: date-time
+        mrn:
+          type: string
+          description: Customs Movement Reference Number
+
+    ContainerGateOutPayload:
+      type: object
+      required:
+        - eventId
+        - eventTimestamp
+        - containerNumber
+        - gateOutDatetime
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventTimestamp:
+          type: string
+          format: date-time
+        containerNumber:
+          type: string
+        terminalCode:
+          type: string
+        gateOutDatetime:
+          type: string
+          format: date-time
+        truckLicensePlate:
+          type: string
+        transporterId:
+          type: string

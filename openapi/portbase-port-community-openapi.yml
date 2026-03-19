@@ -1,0 +1,631 @@
+openapi: 3.1.0
+info:
+  title: Portbase Port Community System API
+  description: >-
+    Portbase is the Dutch Port Community System providing APIs for customs declarations,
+    cargo manifests, vessel call notifications, berth planning, and port logistics
+    coordination at the Port of Rotterdam and Amsterdam, connecting shipping lines,
+    freight forwarders, customs authorities, and terminal operators.
+  version: 1.0.0
+  contact:
+    name: Portbase Support
+    url: https://www.portbase.com/en/contact/
+  license:
+    name: Portbase Terms of Service
+    url: https://www.portbase.com/en/about-portbase/terms-and-conditions/
+servers:
+  - url: https://api.portbase.com/v1
+    description: Portbase Production API
+
+security:
+  - oauth2: []
+
+tags:
+  - name: VesselCalls
+    description: Vessel arrival and departure notifications
+  - name: CargoManifests
+    description: Cargo manifest declarations
+  - name: CustomsDeclarations
+    description: Import and export customs filings
+  - name: BerthPlanning
+    description: Berth allocation and planning
+  - name: Containers
+    description: Container tracking and inspection
+  - name: HazardousCargo
+    description: Dangerous goods declarations
+
+paths:
+  /vessel-calls:
+    get:
+      operationId: listVesselCalls
+      summary: List vessel calls
+      description: Returns vessel call notifications for upcoming arrivals and departures at Dutch ports.
+      tags:
+        - VesselCalls
+      parameters:
+        - name: portCode
+          in: query
+          description: UN/LOCODE of the port (e.g., NLRTM for Rotterdam)
+          schema:
+            type: string
+            example: NLRTM
+        - name: status
+          in: query
+          description: Filter by vessel call status
+          schema:
+            type: string
+            enum: [EXPECTED, ARRIVED, BERTHED, DEPARTED, CANCELLED]
+        - name: fromDate
+          in: query
+          description: Earliest expected arrival date
+          schema:
+            type: string
+            format: date-time
+        - name: toDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+            maximum: 500
+      responses:
+        '200':
+          description: Vessel call list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  vesselCalls:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VesselCall'
+                  totalCount:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createVesselCall
+      summary: Submit vessel call notification
+      description: Submits a pre-arrival vessel call notification (PARN) to the port authority.
+      tags:
+        - VesselCalls
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VesselCallCreate'
+      responses:
+        '201':
+          description: Vessel call submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VesselCall'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /vessel-calls/{vesselCallId}:
+    get:
+      operationId: getVesselCall
+      summary: Get vessel call
+      description: Returns details for a specific vessel call including berth allocation and status.
+      tags:
+        - VesselCalls
+      parameters:
+        - $ref: '#/components/parameters/VesselCallId'
+      responses:
+        '200':
+          description: Vessel call details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VesselCallDetail'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateVesselCall
+      summary: Update vessel call
+      description: Updates a vessel call notification with revised arrival times or cargo information.
+      tags:
+        - VesselCalls
+      parameters:
+        - $ref: '#/components/parameters/VesselCallId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VesselCallUpdate'
+      responses:
+        '200':
+          description: Vessel call updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VesselCall'
+
+  /cargo-manifests:
+    post:
+      operationId: submitCargoManifest
+      summary: Submit cargo manifest
+      description: Submits a cargo manifest declaration for a vessel call, listing all cargo on board.
+      tags:
+        - CargoManifests
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CargoManifestCreate'
+      responses:
+        '201':
+          description: Manifest submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CargoManifest'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /cargo-manifests/{manifestId}:
+    get:
+      operationId: getCargoManifest
+      summary: Get cargo manifest
+      description: Returns a cargo manifest with all cargo lines and customs status.
+      tags:
+        - CargoManifests
+      parameters:
+        - name: manifestId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cargo manifest details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CargoManifest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /customs/import-declarations:
+    post:
+      operationId: submitImportDeclaration
+      summary: Submit import customs declaration
+      description: Submits an electronic import declaration (EID) to Dutch customs via Portbase.
+      tags:
+        - CustomsDeclarations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportDeclarationCreate'
+      responses:
+        '201':
+          description: Declaration submitted to customs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomsDeclaration'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /containers/{containerId}:
+    get:
+      operationId: getContainer
+      summary: Get container status
+      description: Returns tracking information and inspection status for a shipping container.
+      tags:
+        - Containers
+      parameters:
+        - name: containerId
+          in: path
+          required: true
+          description: Container number (ISO 6346 format, e.g. MSCU1234567)
+          schema:
+            type: string
+            pattern: '^[A-Z]{4}[0-9]{7}$'
+      responses:
+        '200':
+          description: Container details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Container'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /hazardous-cargo:
+    post:
+      operationId: submitHazardousCargoDeclaration
+      summary: Submit hazardous goods notification
+      description: Submits an IMDG dangerous goods declaration for hazardous cargo on a vessel call.
+      tags:
+        - HazardousCargo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HazardousCargoDeclaration'
+      responses:
+        '201':
+          description: Hazardous cargo declaration submitted
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.portbase.com/oauth2/token
+          scopes:
+            vessel-calls.read: Read vessel call data
+            vessel-calls.write: Submit and update vessel calls
+            manifests.write: Submit cargo manifests
+            customs.write: Submit customs declarations
+
+  parameters:
+    VesselCallId:
+      name: vesselCallId
+      in: path
+      required: true
+      description: Portbase vessel call identifier
+      schema:
+        type: string
+
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    VesselCall:
+      type: object
+      description: A vessel arrival/departure call at a Dutch port
+      properties:
+        vesselCallId:
+          type: string
+        imoNumber:
+          type: string
+          description: IMO vessel identification number (7 digits)
+          pattern: '^\d{7}$'
+        mmsi:
+          type: string
+          description: Maritime Mobile Service Identity
+        vesselName:
+          type: string
+        callSign:
+          type: string
+        flag:
+          type: string
+          maxLength: 3
+          description: ISO 3166-1 alpha-3 flag state
+        portCode:
+          type: string
+          description: UN/LOCODE
+        terminalCode:
+          type: string
+        status:
+          type: string
+          enum: [EXPECTED, ARRIVED, BERTHED, DEPARTED, CANCELLED]
+        eta:
+          type: string
+          format: date-time
+          description: Estimated time of arrival
+        etd:
+          type: string
+          format: date-time
+          description: Estimated time of departure
+        ata:
+          type: string
+          format: date-time
+          nullable: true
+          description: Actual time of arrival
+        atd:
+          type: string
+          format: date-time
+          nullable: true
+          description: Actual time of departure
+        shippingAgent:
+          type: string
+        pilotageRequired:
+          type: boolean
+        tugAssistance:
+          type: boolean
+
+    VesselCallCreate:
+      type: object
+      required:
+        - imoNumber
+        - vesselName
+        - portCode
+        - eta
+        - etd
+      properties:
+        imoNumber:
+          type: string
+          pattern: '^\d{7}$'
+        vesselName:
+          type: string
+        callSign:
+          type: string
+        portCode:
+          type: string
+        terminalCode:
+          type: string
+        eta:
+          type: string
+          format: date-time
+        etd:
+          type: string
+          format: date-time
+        shippingAgent:
+          type: string
+        pilotageRequired:
+          type: boolean
+          default: true
+
+    VesselCallUpdate:
+      type: object
+      properties:
+        eta:
+          type: string
+          format: date-time
+        etd:
+          type: string
+          format: date-time
+        terminalCode:
+          type: string
+        status:
+          type: string
+          enum: [EXPECTED, ARRIVED, DEPARTED, CANCELLED]
+
+    VesselCallDetail:
+      allOf:
+        - $ref: '#/components/schemas/VesselCall'
+        - type: object
+          properties:
+            berthPlan:
+              $ref: '#/components/schemas/BerthPlan'
+            cargoManifestIds:
+              type: array
+              items:
+                type: string
+
+    BerthPlan:
+      type: object
+      properties:
+        berthId:
+          type: string
+        berthName:
+          type: string
+        plannedArrival:
+          type: string
+          format: date-time
+        plannedDeparture:
+          type: string
+          format: date-time
+        bollardFrom:
+          type: integer
+        bollardTo:
+          type: integer
+
+    CargoManifest:
+      type: object
+      properties:
+        manifestId:
+          type: string
+        vesselCallId:
+          type: string
+        declarantId:
+          type: string
+          description: EORI number of the declarant
+        submissionDatetime:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [DRAFT, SUBMITTED, ACCEPTED, REJECTED, RELEASED]
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/CargoManifestLine'
+
+    CargoManifestCreate:
+      type: object
+      required:
+        - vesselCallId
+        - declarantId
+        - lines
+      properties:
+        vesselCallId:
+          type: string
+        declarantId:
+          type: string
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/CargoManifestLine'
+
+    CargoManifestLine:
+      type: object
+      properties:
+        lineNumber:
+          type: integer
+        containerNumber:
+          type: string
+        billOfLadingNumber:
+          type: string
+        cargoDescription:
+          type: string
+        hsCode:
+          type: string
+          description: HS tariff code (6 digits)
+        grossWeight:
+          type: number
+          format: double
+        grossWeightUnit:
+          type: string
+          enum: [KG, MT]
+        packageCount:
+          type: integer
+        packageType:
+          type: string
+        portOfLoading:
+          type: string
+          description: UN/LOCODE of port of loading
+        portOfDischarge:
+          type: string
+          description: UN/LOCODE of port of discharge
+        shipper:
+          type: string
+        consignee:
+          type: string
+
+    CustomsDeclaration:
+      type: object
+      properties:
+        declarationId:
+          type: string
+        declarationType:
+          type: string
+          enum: [IMPORT, EXPORT, TRANSIT]
+        mrn:
+          type: string
+          description: Movement Reference Number from customs
+        status:
+          type: string
+          enum: [PENDING, ACCEPTED, CONTROLLED, RELEASED, REJECTED]
+        submissionDatetime:
+          type: string
+          format: date-time
+        releaseStatus:
+          type: string
+          nullable: true
+
+    ImportDeclarationCreate:
+      type: object
+      required:
+        - manifestId
+        - declarantId
+        - consigneeId
+        - lines
+      properties:
+        manifestId:
+          type: string
+        declarantId:
+          type: string
+          description: EORI number
+        consigneeId:
+          type: string
+          description: EORI number of consignee
+        lines:
+          type: array
+          items:
+            type: object
+
+    Container:
+      type: object
+      properties:
+        containerNumber:
+          type: string
+        isoType:
+          type: string
+          description: ISO 6346 container type code
+        status:
+          type: string
+          enum: [ON_VESSEL, AT_TERMINAL, IN_CUSTOMS, RELEASED, PICKED_UP]
+        terminalCode:
+          type: string
+        vesselCallId:
+          type: string
+        customsStatus:
+          type: string
+          enum: [NOT_YET_DECLARED, DECLARED, RELEASED, CONTROLLED, BLOCKED]
+        inspectionStatus:
+          type: string
+          enum: [NOT_SELECTED, SELECTED, INSPECTED, CLEARED]
+        lastUpdateDatetime:
+          type: string
+          format: date-time
+
+    HazardousCargoDeclaration:
+      type: object
+      required:
+        - vesselCallId
+        - imdgClass
+        - unNumber
+        - quantity
+      properties:
+        vesselCallId:
+          type: string
+        containerNumber:
+          type: string
+        imdgClass:
+          type: string
+          description: IMDG hazard class (e.g., 1.1, 3, 8)
+        unNumber:
+          type: string
+          pattern: '^UN\d{4}$'
+          description: UN substance number
+        properShippingName:
+          type: string
+        quantity:
+          type: number
+          format: double
+        quantityUnit:
+          type: string
+          enum: [KG, L, MT]
+        packingGroup:
+          type: string
+          enum: [I, II, III]
+        flashPoint:
+          type: number
+          format: double
+          nullable: true
+        emergencyContact:
+          type: string
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: string

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/port-community-systems/json-schema/portbase-vessel-call-schema.json",
+  "title": "Portbase Vessel Call",
+  "description": "Schema for a vessel call notification in the Portbase Port Community System, representing a vessel's arrival at a Dutch port.",
+  "type": "object",
+  "properties": {
+    "vesselCallId": {
+      "type": "string",
+      "description": "Portbase system-generated vessel call identifier"
+    },
+    "imoNumber": {
+      "type": "string",
+      "pattern": "^\\d{7}$",
+      "description": "IMO vessel identification number (7 digits)"
+    },
+    "mmsi": {
+      "type": "string",
+      "pattern": "^\\d{9}$",
+      "description": "Maritime Mobile Service Identity (9 digits)"
+    },
+    "vesselName": {
+      "type": "string",
+      "description": "Official vessel name"
+    },
+    "callSign": {
+      "type": "string",
+      "description": "Radio call sign"
+    },
+    "flag": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "ISO 3166-1 alpha-3 flag state code"
+    },
+    "portCode": {
+      "type": "string",
+      "description": "UN/LOCODE of the destination port (e.g., NLRTM)"
+    },
+    "terminalCode": {
+      "type": "string",
+      "description": "Terminal code within the port"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["EXPECTED", "ARRIVED", "BERTHED", "DEPARTED", "CANCELLED"],
+      "description": "Current vessel call status"
+    },
+    "eta": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Estimated time of arrival (UTC)"
+    },
+    "etd": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Estimated time of departure (UTC)"
+    },
+    "ata": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Actual time of arrival (UTC)"
+    },
+    "atd": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Actual time of departure (UTC)"
+    },
+    "shippingAgent": {
+      "type": "string",
+      "description": "Shipping agent company name or EORI number"
+    },
+    "pilotageRequired": {
+      "type": "boolean",
+      "description": "Whether pilotage is required for this vessel call"
+    },
+    "tugAssistance": {
+      "type": "boolean",
+      "description": "Whether tug assistance has been requested"
+    },
+    "maxDraftForward": {
+      "type": "number",
+      "description": "Maximum forward draft in meters"
+    },
+    "maxDraftAft": {
+      "type": "number",
+      "description": "Maximum aft draft in meters"
+    },
+    "grossTonnage": {
+      "type": "integer",
+      "description": "Gross tonnage of the vessel"
+    },
+    "netTonnage": {
+      "type": "integer",
+      "description": "Net tonnage of the vessel"
+    }
+  },
+  "required": ["imoNumber", "vesselName", "portCode", "eta", "etd", "status"],
+  "examples": [
+    {
+      "vesselCallId": "RTM-2026-00987654",
+      "imoNumber": "9811614",
+      "mmsi": "636020485",
+      "vesselName": "MSC OSCAR",
+      "callSign": "A8IG5",
+      "flag": "LBR",
+      "portCode": "NLRTM",
+      "terminalCode": "ECT-DELTA",
+      "status": "EXPECTED",
+      "eta": "2026-03-22T06:00:00Z",
+      "etd": "2026-03-24T18:00:00Z",
+      "ata": null,
+      "atd": null,
+      "shippingAgent": "MSC AGENCY ROTTERDAM",
+      "pilotageRequired": true,
+      "tugAssistance": true,
+      "grossTonnage": 197362
+    }
+  ]
+}

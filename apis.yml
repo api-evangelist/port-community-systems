@@ -16,6 +16,10 @@ apis:
   properties:
   - url: https://www.portbase.com/en/
     type: Documentation
+  - url: openapi/portbase-port-community-openapi.yml
+    type: OpenAPI
+  - url: asyncapi/portbase-vessel-events-asyncapi.yml
+    type: AsyncAPI
   description: >-
     Portbase is the Dutch Port Community System providing APIs for customs declarations, cargo manifests, vessel call notifications, berth planning, and port logistics coordination at the Port of Rotterdam and Amsterdam, connecting shipping lines, freight forwarders, customs authorities, and terminal operators.
 
@@ -44,6 +48,14 @@ common:
   type: Documentation
 - url: https://www.ipcsa.international/
   type: Website
+- url: openapi/portbase-port-community-openapi.yml
+  type: OpenAPI
+- url: asyncapi/portbase-vessel-events-asyncapi.yml
+  type: AsyncAPI
+- url: json-schema/portbase-vessel-call-schema.json
+  type: JSONSchema
+- url: json-ld/portbase-context.jsonld
+  type: JSONLDContext
 maintainers:
 - name: Kin Lane
   email: kin@apievangelist.com

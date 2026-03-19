@@ -1,0 +1,113 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "pcs": "https://www.portbase.com/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "wgs84": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+
+    "VesselCall": {
+      "@id": "schema:Event",
+      "@type": "@id"
+    },
+    "vesselCallId": {
+      "@id": "schema:identifier"
+    },
+    "imoNumber": {
+      "@id": "pcs:imoNumber"
+    },
+    "mmsi": {
+      "@id": "pcs:mmsi"
+    },
+    "vesselName": {
+      "@id": "schema:name"
+    },
+    "callSign": {
+      "@id": "pcs:callSign"
+    },
+    "flag": {
+      "@id": "pcs:flagState"
+    },
+    "portCode": {
+      "@id": "pcs:portUnlocode"
+    },
+    "status": {
+      "@id": "schema:eventStatus"
+    },
+    "eta": {
+      "@id": "schema:arrivalTime",
+      "@type": "xsd:dateTime"
+    },
+    "etd": {
+      "@id": "schema:departureTime",
+      "@type": "xsd:dateTime"
+    },
+    "ata": {
+      "@id": "pcs:actualArrival",
+      "@type": "xsd:dateTime"
+    },
+    "atd": {
+      "@id": "pcs:actualDeparture",
+      "@type": "xsd:dateTime"
+    },
+    "pilotageRequired": {
+      "@id": "pcs:pilotageRequired",
+      "@type": "xsd:boolean"
+    },
+
+    "CargoManifest": {
+      "@id": "schema:ItemList",
+      "@type": "@id"
+    },
+    "manifestId": {
+      "@id": "schema:identifier"
+    },
+    "billOfLadingNumber": {
+      "@id": "pcs:billOfLadingNumber"
+    },
+    "hsCode": {
+      "@id": "pcs:hsTariffCode"
+    },
+    "grossWeight": {
+      "@id": "schema:weight",
+      "@type": "xsd:decimal"
+    },
+    "portOfLoading": {
+      "@id": "schema:departureTerminal"
+    },
+    "portOfDischarge": {
+      "@id": "schema:arrivalTerminal"
+    },
+    "shipper": {
+      "@id": "schema:shipper"
+    },
+    "consignee": {
+      "@id": "schema:recipient"
+    },
+
+    "Container": {
+      "@id": "schema:Product",
+      "@type": "@id"
+    },
+    "containerNumber": {
+      "@id": "schema:identifier"
+    },
+    "isoType": {
+      "@id": "pcs:containerIsoType"
+    },
+    "customsStatus": {
+      "@id": "pcs:customsStatus"
+    },
+
+    "CustomsDeclaration": {
+      "@id": "schema:GovernmentService",
+      "@type": "@id"
+    },
+    "declarationId": {
+      "@id": "schema:identifier"
+    },
+    "mrn": {
+      "@id": "pcs:movementReferenceNumber"
+    }
+  }
+}
