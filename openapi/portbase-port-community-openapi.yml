@@ -21,19 +21,17 @@ security:
   - oauth2: []
 
 tags:
-  - name: VesselCalls
-    description: Vessel arrival and departure notifications
   - name: CargoManifests
     description: Cargo manifest declarations
-  - name: CustomsDeclarations
-    description: Import and export customs filings
-  - name: BerthPlanning
-    description: Berth allocation and planning
   - name: Containers
     description: Container tracking and inspection
+  - name: CustomsDeclarations
+    description: Import and export customs filings
   - name: HazardousCargo
     description: Dangerous goods declarations
 
+  - name: VesselCalls
+    description: Vessel arrival and departure notifications
 paths:
   /vessel-calls:
     get:
