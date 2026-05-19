@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Portbase Port Community System API — HazardousCargo
+  description: 'Portbase Port Community System API — HazardousCargo. 1 operations. Lead operation: Submit hazardous goods
+    notification. Self-contained Naftiko capability covering one Port Community Systems business surface.'
+  tags:
+  - Port Community Systems
+  - HazardousCargo
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PORT_COMMUNITY_SYSTEMS_API_KEY: PORT_COMMUNITY_SYSTEMS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: portbase-port-community-hazardouscargo
+    baseUri: https://api.portbase.com/v1
+    description: Portbase Port Community System API — HazardousCargo business capability. Self-contained, no shared references.
+    resources:
+    - name: hazardous-cargo
+      path: /hazardous-cargo
+      operations:
+      - name: submithazardouscargodeclaration
+        method: POST
+        description: Submit hazardous goods notification
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.PORT_COMMUNITY_SYSTEMS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: portbase-port-community-hazardouscargo-rest
+    port: 8080
+    description: REST adapter for Portbase Port Community System API — HazardousCargo. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/hazardous-cargo
+      name: hazardous-cargo
+      description: REST surface for hazardous-cargo.
+      operations:
+      - method: POST
+        name: submithazardouscargodeclaration
+        description: Submit hazardous goods notification
+        call: portbase-port-community-hazardouscargo.submithazardouscargodeclaration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: portbase-port-community-hazardouscargo-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Portbase Port Community System API — HazardousCargo. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: submit-hazardous-goods-notification
+      description: Submit hazardous goods notification
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: portbase-port-community-hazardouscargo.submithazardouscargodeclaration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

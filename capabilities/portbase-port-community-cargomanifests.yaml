@@ -1,0 +1,121 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Portbase Port Community System API — CargoManifests
+  description: 'Portbase Port Community System API — CargoManifests. 2 operations. Lead operation: Submit cargo manifest.
+    Self-contained Naftiko capability covering one Port Community Systems business surface.'
+  tags:
+  - Port Community Systems
+  - CargoManifests
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PORT_COMMUNITY_SYSTEMS_API_KEY: PORT_COMMUNITY_SYSTEMS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: portbase-port-community-cargomanifests
+    baseUri: https://api.portbase.com/v1
+    description: Portbase Port Community System API — CargoManifests business capability. Self-contained, no shared references.
+    resources:
+    - name: cargo-manifests
+      path: /cargo-manifests
+      operations:
+      - name: submitcargomanifest
+        method: POST
+        description: Submit cargo manifest
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cargo-manifests-manifestId
+      path: /cargo-manifests/{manifestId}
+      operations:
+      - name: getcargomanifest
+        method: GET
+        description: Get cargo manifest
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: manifestId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.PORT_COMMUNITY_SYSTEMS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: portbase-port-community-cargomanifests-rest
+    port: 8080
+    description: REST adapter for Portbase Port Community System API — CargoManifests. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/cargo-manifests
+      name: cargo-manifests
+      description: REST surface for cargo-manifests.
+      operations:
+      - method: POST
+        name: submitcargomanifest
+        description: Submit cargo manifest
+        call: portbase-port-community-cargomanifests.submitcargomanifest
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cargo-manifests/{manifestid}
+      name: cargo-manifests-manifestid
+      description: REST surface for cargo-manifests-manifestId.
+      operations:
+      - method: GET
+        name: getcargomanifest
+        description: Get cargo manifest
+        call: portbase-port-community-cargomanifests.getcargomanifest
+        with:
+          manifestId: rest.manifestId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: portbase-port-community-cargomanifests-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Portbase Port Community System API — CargoManifests. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: submit-cargo-manifest
+      description: Submit cargo manifest
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: portbase-port-community-cargomanifests.submitcargomanifest
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-cargo-manifest
+      description: Get cargo manifest
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: portbase-port-community-cargomanifests.getcargomanifest
+      with:
+        manifestId: tools.manifestId
+      outputParameters:
+      - type: object
+        mapping: $.
