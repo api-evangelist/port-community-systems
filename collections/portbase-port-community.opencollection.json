@@ -1,0 +1,246 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Portbase Port Community System API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.portbase.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "VesselCalls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List vessel calls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portbase.com/v1/vessel-calls",
+            "params": [
+              {
+                "name": "portCode",
+                "value": "",
+                "type": "query",
+                "description": "UN/LOCODE of the port (e.g., NLRTM for Rotterdam)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by vessel call status"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query",
+                "description": "Earliest expected arrival date"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns vessel call notifications for upcoming arrivals and departures at Dutch ports."
+        },
+        {
+          "info": {
+            "name": "Submit vessel call notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portbase.com/v1/vessel-calls",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a pre-arrival vessel call notification (PARN) to the port authority."
+        },
+        {
+          "info": {
+            "name": "Get vessel call",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portbase.com/v1/vessel-calls/:vesselCallId",
+            "params": [
+              {
+                "name": "vesselCallId",
+                "value": "",
+                "type": "path",
+                "description": "Portbase vessel call identifier"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific vessel call including berth allocation and status."
+        },
+        {
+          "info": {
+            "name": "Update vessel call",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.portbase.com/v1/vessel-calls/:vesselCallId",
+            "params": [
+              {
+                "name": "vesselCallId",
+                "value": "",
+                "type": "path",
+                "description": "Portbase vessel call identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a vessel call notification with revised arrival times or cargo information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CargoManifests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit cargo manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portbase.com/v1/cargo-manifests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a cargo manifest declaration for a vessel call, listing all cargo on board."
+        },
+        {
+          "info": {
+            "name": "Get cargo manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portbase.com/v1/cargo-manifests/:manifestId",
+            "params": [
+              {
+                "name": "manifestId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a cargo manifest with all cargo lines and customs status."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CustomsDeclarations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit import customs declaration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portbase.com/v1/customs/import-declarations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits an electronic import declaration (EID) to Dutch customs via Portbase."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Containers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get container status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portbase.com/v1/containers/:containerId",
+            "params": [
+              {
+                "name": "containerId",
+                "value": "",
+                "type": "path",
+                "description": "Container number (ISO 6346 format, e.g. MSCU1234567)"
+              }
+            ]
+          },
+          "docs": "Returns tracking information and inspection status for a shipping container."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "HazardousCargo",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit hazardous goods notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portbase.com/v1/hazardous-cargo",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits an IMDG dangerous goods declaration for hazardous cargo on a vessel call."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
