@@ -1,0 +1,34 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/portbase-port-community-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/portbase-port-community-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.portbase.com/oauth2/token
+scopes:
+- scope: customs.write
+  description: Submit customs declarations
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/portbase-port-community-openapi.yml
+- scope: manifests.write
+  description: Submit cargo manifests
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/portbase-port-community-openapi.yml
+- scope: vessel-calls.read
+  description: Read vessel call data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/portbase-port-community-openapi.yml
+- scope: vessel-calls.write
+  description: Submit and update vessel calls
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/portbase-port-community-openapi.yml

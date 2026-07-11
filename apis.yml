@@ -59,12 +59,18 @@ apis:
       - type: Documentation
         url: https://www.ipcsa.international/
 common:
+  - type: Authentication
+    url: authentication/port-community-systems-authentication.yml
+  - type: OAuthScopes
+    url: scopes/port-community-systems-scopes.yml
   - type: Website
     url: https://www.ipcsa.international/
   - type: Portal
     url: https://www.ipcsa.international/
   - type: Documentation
     url: https://www.ipcsa.international/
+  - url: https://www.portbase.com/en/news-knowledge/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
