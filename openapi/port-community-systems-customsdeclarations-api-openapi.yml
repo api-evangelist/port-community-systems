@@ -1,0 +1,121 @@
+openapi: 3.1.0
+info:
+  title: Portbase Port Community System CargoManifests CustomsDeclarations API
+  description: Portbase is the Dutch Port Community System providing APIs for customs declarations, cargo manifests, vessel call notifications, berth planning, and port logistics coordination at the Port of Rotterdam and Amsterdam, connecting shipping lines, freight forwarders, customs authorities, and terminal operators.
+  version: 1.0.0
+  contact:
+    name: Portbase Support
+    url: https://www.portbase.com/en/contact/
+  license:
+    name: Portbase Terms of Service
+    url: https://www.portbase.com/en/about-portbase/terms-and-conditions/
+servers:
+- url: https://api.portbase.com/v1
+  description: Portbase Production API
+security:
+- oauth2: []
+tags:
+- name: CustomsDeclarations
+  description: Import and export customs filings
+paths:
+  /customs/import-declarations:
+    post:
+      operationId: submitImportDeclaration
+      summary: Submit import customs declaration
+      description: Submits an electronic import declaration (EID) to Dutch customs via Portbase.
+      tags:
+      - CustomsDeclarations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportDeclarationCreate'
+      responses:
+        '201':
+          description: Declaration submitted to customs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomsDeclaration'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    ImportDeclarationCreate:
+      type: object
+      required:
+      - manifestId
+      - declarantId
+      - consigneeId
+      - lines
+      properties:
+        manifestId:
+          type: string
+        declarantId:
+          type: string
+          description: EORI number
+        consigneeId:
+          type: string
+          description: EORI number of consignee
+        lines:
+          type: array
+          items:
+            type: object
+    CustomsDeclaration:
+      type: object
+      properties:
+        declarationId:
+          type: string
+        declarationType:
+          type: string
+          enum:
+          - IMPORT
+          - EXPORT
+          - TRANSIT
+        mrn:
+          type: string
+          description: Movement Reference Number from customs
+        status:
+          type: string
+          enum:
+          - PENDING
+          - ACCEPTED
+          - CONTROLLED
+          - RELEASED
+          - REJECTED
+        submissionDatetime:
+          type: string
+          format: date-time
+        releaseStatus:
+          type: string
+          nullable: true
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.portbase.com/oauth2/token
+          scopes:
+            vessel-calls.read: Read vessel call data
+            vessel-calls.write: Submit and update vessel calls
+            manifests.write: Submit cargo manifests
+            customs.write: Submit customs declarations

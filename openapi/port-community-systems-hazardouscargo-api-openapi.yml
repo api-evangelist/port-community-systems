@@ -1,0 +1,111 @@
+openapi: 3.1.0
+info:
+  title: Portbase Port Community System CargoManifests HazardousCargo API
+  description: Portbase is the Dutch Port Community System providing APIs for customs declarations, cargo manifests, vessel call notifications, berth planning, and port logistics coordination at the Port of Rotterdam and Amsterdam, connecting shipping lines, freight forwarders, customs authorities, and terminal operators.
+  version: 1.0.0
+  contact:
+    name: Portbase Support
+    url: https://www.portbase.com/en/contact/
+  license:
+    name: Portbase Terms of Service
+    url: https://www.portbase.com/en/about-portbase/terms-and-conditions/
+servers:
+- url: https://api.portbase.com/v1
+  description: Portbase Production API
+security:
+- oauth2: []
+tags:
+- name: HazardousCargo
+  description: Dangerous goods declarations
+paths:
+  /hazardous-cargo:
+    post:
+      operationId: submitHazardousCargoDeclaration
+      summary: Submit hazardous goods notification
+      description: Submits an IMDG dangerous goods declaration for hazardous cargo on a vessel call.
+      tags:
+      - HazardousCargo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HazardousCargoDeclaration'
+      responses:
+        '201':
+          description: Hazardous cargo declaration submitted
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    HazardousCargoDeclaration:
+      type: object
+      required:
+      - vesselCallId
+      - imdgClass
+      - unNumber
+      - quantity
+      properties:
+        vesselCallId:
+          type: string
+        containerNumber:
+          type: string
+        imdgClass:
+          type: string
+          description: IMDG hazard class (e.g., 1.1, 3, 8)
+        unNumber:
+          type: string
+          pattern: ^UN\d{4}$
+          description: UN substance number
+        properShippingName:
+          type: string
+        quantity:
+          type: number
+          format: double
+        quantityUnit:
+          type: string
+          enum:
+          - KG
+          - L
+          - MT
+        packingGroup:
+          type: string
+          enum:
+          - I
+          - II
+          - III
+        flashPoint:
+          type: number
+          format: double
+          nullable: true
+        emergencyContact:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.portbase.com/oauth2/token
+          scopes:
+            vessel-calls.read: Read vessel call data
+            vessel-calls.write: Submit and update vessel calls
+            manifests.write: Submit cargo manifests
+            customs.write: Submit customs declarations

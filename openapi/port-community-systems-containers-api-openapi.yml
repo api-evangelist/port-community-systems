@@ -1,0 +1,113 @@
+openapi: 3.1.0
+info:
+  title: Portbase Port Community System CargoManifests Containers API
+  description: Portbase is the Dutch Port Community System providing APIs for customs declarations, cargo manifests, vessel call notifications, berth planning, and port logistics coordination at the Port of Rotterdam and Amsterdam, connecting shipping lines, freight forwarders, customs authorities, and terminal operators.
+  version: 1.0.0
+  contact:
+    name: Portbase Support
+    url: https://www.portbase.com/en/contact/
+  license:
+    name: Portbase Terms of Service
+    url: https://www.portbase.com/en/about-portbase/terms-and-conditions/
+servers:
+- url: https://api.portbase.com/v1
+  description: Portbase Production API
+security:
+- oauth2: []
+tags:
+- name: Containers
+  description: Container tracking and inspection
+paths:
+  /containers/{containerId}:
+    get:
+      operationId: getContainer
+      summary: Get container status
+      description: Returns tracking information and inspection status for a shipping container.
+      tags:
+      - Containers
+      parameters:
+      - name: containerId
+        in: path
+        required: true
+        description: Container number (ISO 6346 format, e.g. MSCU1234567)
+        schema:
+          type: string
+          pattern: ^[A-Z]{4}[0-9]{7}$
+      responses:
+        '200':
+          description: Container details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Container'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Container:
+      type: object
+      properties:
+        containerNumber:
+          type: string
+        isoType:
+          type: string
+          description: ISO 6346 container type code
+        status:
+          type: string
+          enum:
+          - ON_VESSEL
+          - AT_TERMINAL
+          - IN_CUSTOMS
+          - RELEASED
+          - PICKED_UP
+        terminalCode:
+          type: string
+        vesselCallId:
+          type: string
+        customsStatus:
+          type: string
+          enum:
+          - NOT_YET_DECLARED
+          - DECLARED
+          - RELEASED
+          - CONTROLLED
+          - BLOCKED
+        inspectionStatus:
+          type: string
+          enum:
+          - NOT_SELECTED
+          - SELECTED
+          - INSPECTED
+          - CLEARED
+        lastUpdateDatetime:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.portbase.com/oauth2/token
+          scopes:
+            vessel-calls.read: Read vessel call data
+            vessel-calls.write: Submit and update vessel calls
+            manifests.write: Submit cargo manifests
+            customs.write: Submit customs declarations
