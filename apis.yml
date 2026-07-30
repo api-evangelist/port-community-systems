@@ -5,7 +5,20 @@ description: >-
   information between public and private stakeholders to optimise, manage, and automate efficient port and logistics
   processes through a single submission of data.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/port-community-systems.png
 tags:
   - Maritime
   - Port
@@ -18,46 +31,107 @@ created: '2026-03-18'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: port-community-systems:portbase
-    name: Portbase Port Community System API
-    description: >-
-      Portbase is the Dutch Port Community System providing APIs for customs declarations, cargo manifests, vessel call
-      notifications, berth planning, and port logistics coordination at the Port of Rotterdam and Amsterdam, connecting
-      shipping lines, freight forwarders, customs authorities, and terminal operators.
-    humanURL: https://www.portbase.com/en/
-    tags:
-      - Maritime
-      - Port
-      - Customs
-      - Cargo
-      - Netherlands
-    properties:
-      - type: Documentation
-        url: https://www.portbase.com/en/
-      - type: OpenAPI
-        url: openapi/portbase-port-community-openapi.yml
-      - type: AsyncAPI
-        url: asyncapi/portbase-vessel-events-asyncapi.yml
-      - type: JSONSchema
-        url: json-schema/portbase-vessel-call-schema.json
-      - type: JSONLDContext
-        url: json-ld/portbase-context.jsonld
-  - aid: port-community-systems:ipcsa
-    name: IPCSA Port Community Systems API
-    description: >-
-      The International Port Community Systems Association (IPCSA) represents Port Community System operators and
-      Maritime Single Window operators worldwide. Member PCS platforms provide APIs for customs declarations, cargo
-      manifests, vessel call data, and port logistics coordination using REST and EDIFACT protocols.
-    humanURL: https://www.ipcsa.international/
-    tags:
-      - Maritime
-      - Port
-      - Customs
-      - Cargo
-      - International
-    properties:
-      - type: Documentation
-        url: https://www.ipcsa.international/
+- aid: port-community-systems:ipcsa
+  name: IPCSA Port Community Systems API
+  description: >-
+    The International Port Community Systems Association (IPCSA) represents Port Community System operators
+    and Maritime Single Window operators worldwide. Member PCS platforms provide APIs for customs declarations,
+    cargo manifests, vessel call data, and port logistics coordination using REST and EDIFACT protocols.
+  humanURL: https://www.ipcsa.international/
+  tags:
+  - Maritime
+  - Port
+  - Customs
+  - Cargo
+  - International
+  properties:
+  - type: Documentation
+    url: https://www.ipcsa.international/
+- aid: port-community-systems:port-community-systems-cargomanifests-api
+  name: Port Community Systems CargoManifests API
+  description: Cargo manifest declarations
+  humanURL: https://www.portbase.com/en/
+  tags:
+  - CargoManifests
+  properties:
+  - type: OpenAPI
+    url: openapi/port-community-systems-cargomanifests-api-openapi.yml
+  - type: Documentation
+    url: https://www.portbase.com/en/
+  - type: AsyncAPI
+    url: asyncapi/portbase-vessel-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/portbase-vessel-call-schema.json
+  - type: JSONLDContext
+    url: json-ld/portbase-context.jsonld
+- aid: port-community-systems:port-community-systems-containers-api
+  name: Port Community Systems Containers API
+  description: Container tracking and inspection
+  humanURL: https://www.portbase.com/en/
+  tags:
+  - Containers
+  properties:
+  - type: OpenAPI
+    url: openapi/port-community-systems-containers-api-openapi.yml
+  - type: Documentation
+    url: https://www.portbase.com/en/
+  - type: AsyncAPI
+    url: asyncapi/portbase-vessel-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/portbase-vessel-call-schema.json
+  - type: JSONLDContext
+    url: json-ld/portbase-context.jsonld
+- aid: port-community-systems:port-community-systems-customsdeclarations-api
+  name: Port Community Systems CustomsDeclarations API
+  description: Import and export customs filings
+  humanURL: https://www.portbase.com/en/
+  tags:
+  - CustomsDeclarations
+  properties:
+  - type: OpenAPI
+    url: openapi/port-community-systems-customsdeclarations-api-openapi.yml
+  - type: Documentation
+    url: https://www.portbase.com/en/
+  - type: AsyncAPI
+    url: asyncapi/portbase-vessel-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/portbase-vessel-call-schema.json
+  - type: JSONLDContext
+    url: json-ld/portbase-context.jsonld
+- aid: port-community-systems:port-community-systems-hazardouscargo-api
+  name: Port Community Systems HazardousCargo API
+  description: Dangerous goods declarations
+  humanURL: https://www.portbase.com/en/
+  tags:
+  - HazardousCargo
+  properties:
+  - type: OpenAPI
+    url: openapi/port-community-systems-hazardouscargo-api-openapi.yml
+  - type: Documentation
+    url: https://www.portbase.com/en/
+  - type: AsyncAPI
+    url: asyncapi/portbase-vessel-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/portbase-vessel-call-schema.json
+  - type: JSONLDContext
+    url: json-ld/portbase-context.jsonld
+- aid: port-community-systems:port-community-systems-vesselcalls-api
+  name: Port Community Systems VesselCalls API
+  description: Vessel arrival and departure notifications
+  humanURL: https://www.portbase.com/en/
+  tags:
+  - VesselCalls
+  properties:
+  - type: OpenAPI
+    url: openapi/port-community-systems-vesselcalls-api-openapi.yml
+  - type: Documentation
+    url: https://www.portbase.com/en/
+  - type: AsyncAPI
+    url: asyncapi/portbase-vessel-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/portbase-vessel-call-schema.json
+  - type: JSONLDContext
+    url: json-ld/portbase-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/port-community-systems-agentic-access.yml
