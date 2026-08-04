@@ -1,0 +1,22 @@
+{
+  "provider": "port-community-systems",
+  "sources": [
+    "port-community-systems-cargomanifests-api-openapi.yml",
+    "port-community-systems-containers-api-openapi.yml",
+    "port-community-systems-customsdeclarations-api-openapi.yml",
+    "port-community-systems-hazardouscargo-api-openapi.yml",
+    "port-community-systems-vesselcalls-api-openapi.yml"
+  ],
+  "outputs": [
+    "port-community-systems-cargomanifests-api-openapi.yml",
+    "port-community-systems-containers-api-openapi.yml",
+    "port-community-systems-customsdeclarations-api-openapi.yml",
+    "port-community-systems-hazardouscargo-api-openapi.yml",
+    "port-community-systems-vesselcalls-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
