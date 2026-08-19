@@ -29,7 +29,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/port-community-systems/refs/heads/main/apis.yml
 created: '2026-03-18'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: port-community-systems:ipcsa
   name: IPCSA Port Community Systems API
