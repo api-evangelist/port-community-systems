@@ -1,0 +1,669 @@
+{
+  "item": [
+    {
+      "id": "a33372b8-052a-45d7-9c28-7f8d399f837d",
+      "name": "VesselCalls",
+      "description": {
+        "content": "Vessel arrival and departure notifications",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7ebbeee5-ac40-409c-b1dc-d881622736a2",
+          "name": "List vessel calls",
+          "request": {
+            "name": "List vessel calls",
+            "description": {
+              "content": "Returns vessel call notifications for upcoming arrivals and departures at Dutch ports.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vessel-calls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "portCode",
+                  "value": "<string>",
+                  "description": "UN/LOCODE of the port (e.g., NLRTM for Rotterdam)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by vessel call status"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromDate",
+                  "value": "<dateTime>",
+                  "description": "Earliest expected arrival date"
+                },
+                {
+                  "disabled": false,
+                  "key": "toDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c5a9c71-4fd7-46c0-9ae3-09589d8d96eb",
+              "name": "Vessel call list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vessel-calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "portCode",
+                      "value": "NLRTM"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vesselCalls\": [\n    {\n      \"vesselCallId\": \"string\",\n      \"imoNumber\": \"3053467\",\n      \"mmsi\": \"string\",\n      \"vesselName\": \"string\",\n      \"callSign\": \"string\",\n      \"flag\": \"str\",\n      \"portCode\": \"string\",\n      \"terminalCode\": \"string\",\n      \"status\": \"ARRIVED\",\n      \"eta\": \"1987-06-18T09:46:03.241Z\",\n      \"etd\": \"2018-12-29T13:40:07.138Z\",\n      \"ata\": \"1988-12-14T19:19:16.270Z\",\n      \"atd\": \"1998-07-01T09:35:51.217Z\",\n      \"shippingAgent\": \"string\",\n      \"pilotageRequired\": false,\n      \"tugAssistance\": false\n    },\n    {\n      \"vesselCallId\": \"string\",\n      \"imoNumber\": \"0609019\",\n      \"mmsi\": \"string\",\n      \"vesselName\": \"string\",\n      \"callSign\": \"string\",\n      \"flag\": \"str\",\n      \"portCode\": \"string\",\n      \"terminalCode\": \"string\",\n      \"status\": \"CANCELLED\",\n      \"eta\": \"1969-04-18T06:00:54.795Z\",\n      \"etd\": \"1989-04-07T18:36:31.222Z\",\n      \"ata\": \"1996-01-25T17:29:59.215Z\",\n      \"atd\": \"2008-01-11T03:09:19.331Z\",\n      \"shippingAgent\": \"string\",\n      \"pilotageRequired\": false,\n      \"tugAssistance\": false\n    }\n  ],\n  \"totalCount\": 8568\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f699d79a-bcba-484f-82f5-4a50d13ec7eb",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vessel-calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "portCode",
+                      "value": "NLRTM"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "acb57f2b-b27f-4e94-b117-f241dc9faf0c",
+          "name": "Submit vessel call notification",
+          "request": {
+            "name": "Submit vessel call notification",
+            "description": {
+              "content": "Submits a pre-arrival vessel call notification (PARN) to the port authority.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vessel-calls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imoNumber\": \"<string>\",\n  \"vesselName\": \"<string>\",\n  \"portCode\": \"<string>\",\n  \"eta\": \"<dateTime>\",\n  \"etd\": \"<dateTime>\",\n  \"callSign\": \"<string>\",\n  \"terminalCode\": \"<string>\",\n  \"shippingAgent\": \"<string>\",\n  \"pilotageRequired\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ba852de9-7642-4015-a4a3-0d3b423fcf98",
+              "name": "Vessel call submitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vessel-calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"imoNumber\": \"<string>\",\n  \"vesselName\": \"<string>\",\n  \"portCode\": \"<string>\",\n  \"eta\": \"<dateTime>\",\n  \"etd\": \"<dateTime>\",\n  \"callSign\": \"<string>\",\n  \"terminalCode\": \"<string>\",\n  \"shippingAgent\": \"<string>\",\n  \"pilotageRequired\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vesselCallId\": \"string\",\n  \"imoNumber\": \"8036272\",\n  \"mmsi\": \"string\",\n  \"vesselName\": \"string\",\n  \"callSign\": \"string\",\n  \"flag\": \"str\",\n  \"portCode\": \"string\",\n  \"terminalCode\": \"string\",\n  \"status\": \"DEPARTED\",\n  \"eta\": \"1982-12-10T23:49:36.484Z\",\n  \"etd\": \"1968-06-16T01:32:25.700Z\",\n  \"ata\": \"1958-03-14T07:01:51.317Z\",\n  \"atd\": \"1990-01-30T22:24:15.238Z\",\n  \"shippingAgent\": \"string\",\n  \"pilotageRequired\": true,\n  \"tugAssistance\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed7cd09d-bf6e-4523-b268-3382ae89e6fc",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vessel-calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"imoNumber\": \"<string>\",\n  \"vesselName\": \"<string>\",\n  \"portCode\": \"<string>\",\n  \"eta\": \"<dateTime>\",\n  \"etd\": \"<dateTime>\",\n  \"callSign\": \"<string>\",\n  \"terminalCode\": \"<string>\",\n  \"shippingAgent\": \"<string>\",\n  \"pilotageRequired\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3b08177-4149-464e-932c-d11628377cef",
+          "name": "Get vessel call",
+          "request": {
+            "name": "Get vessel call",
+            "description": {
+              "content": "Returns details for a specific vessel call including berth allocation and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vessel-calls",
+                ":vesselCallId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vesselCallId",
+                  "description": "(Required) Portbase vessel call identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b79b2ca8-805c-4b10-ae48-7e406d6ba701",
+              "name": "Vessel call details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vessel-calls",
+                    ":vesselCallId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vesselCallId",
+                      "description": "(Required) Portbase vessel call identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vesselCallId\": \"string\",\n  \"imoNumber\": \"4325952\",\n  \"mmsi\": \"string\",\n  \"vesselName\": \"string\",\n  \"callSign\": \"string\",\n  \"flag\": \"str\",\n  \"portCode\": \"string\",\n  \"terminalCode\": \"string\",\n  \"status\": \"CANCELLED\",\n  \"eta\": \"1955-04-24T23:12:52.531Z\",\n  \"etd\": \"1955-11-20T16:10:34.353Z\",\n  \"ata\": \"2025-05-12T03:07:55.039Z\",\n  \"atd\": \"2001-01-31T07:56:03.883Z\",\n  \"shippingAgent\": \"string\",\n  \"pilotageRequired\": true,\n  \"tugAssistance\": true,\n  \"berthPlan\": {\n    \"berthId\": \"string\",\n    \"berthName\": \"string\",\n    \"plannedArrival\": \"1998-04-28T09:16:08.032Z\",\n    \"plannedDeparture\": \"1973-04-29T05:52:37.876Z\",\n    \"bollardFrom\": 592,\n    \"bollardTo\": 6683\n  },\n  \"cargoManifestIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac3b569d-bdd8-4c6d-9552-179502fda112",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vessel-calls",
+                    ":vesselCallId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vesselCallId",
+                      "description": "(Required) Portbase vessel call identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3f9bfcb-04e9-4dca-9eb1-f29e4712faf8",
+          "name": "Update vessel call",
+          "request": {
+            "name": "Update vessel call",
+            "description": {
+              "content": "Updates a vessel call notification with revised arrival times or cargo information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vessel-calls",
+                ":vesselCallId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vesselCallId",
+                  "description": "(Required) Portbase vessel call identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"eta\": \"<dateTime>\",\n  \"etd\": \"<dateTime>\",\n  \"terminalCode\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "134297d3-dcf3-4bfb-a165-2e549425ca7c",
+              "name": "Vessel call updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vessel-calls",
+                    ":vesselCallId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vesselCallId",
+                      "description": "(Required) Portbase vessel call identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"eta\": \"<dateTime>\",\n  \"etd\": \"<dateTime>\",\n  \"terminalCode\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vesselCallId\": \"string\",\n  \"imoNumber\": \"8036272\",\n  \"mmsi\": \"string\",\n  \"vesselName\": \"string\",\n  \"callSign\": \"string\",\n  \"flag\": \"str\",\n  \"portCode\": \"string\",\n  \"terminalCode\": \"string\",\n  \"status\": \"DEPARTED\",\n  \"eta\": \"1982-12-10T23:49:36.484Z\",\n  \"etd\": \"1968-06-16T01:32:25.700Z\",\n  \"ata\": \"1958-03-14T07:01:51.317Z\",\n  \"atd\": \"1990-01-30T22:24:15.238Z\",\n  \"shippingAgent\": \"string\",\n  \"pilotageRequired\": true,\n  \"tugAssistance\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.portbase.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "vessel-calls.read vessel-calls.write manifests.write customs.write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.portbase.com/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "98ad1a81-cd48-455a-9c38-2386b659c890",
+    "name": "Portbase Port Community System CargoManifests VesselCalls API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Portbase is the Dutch Port Community System providing APIs for customs declarations, cargo manifests, vessel call notifications, berth planning, and port logistics coordination at the Port of Rotterdam and Amsterdam, connecting shipping lines, freight forwarders, customs authorities, and terminal operators.\n\nContact Support:\n Name: Portbase Support",
+      "type": "text/plain"
+    }
+  }
+}

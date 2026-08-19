@@ -1,0 +1,195 @@
+{
+  "item": [
+    {
+      "id": "a4ce1076-6aaf-4ff9-955c-37f1b2e0e767",
+      "name": "HazardousCargo",
+      "description": {
+        "content": "Dangerous goods declarations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c8998f2e-5e27-4067-89f3-ec973a64c58b",
+          "name": "Submit hazardous goods notification",
+          "request": {
+            "name": "Submit hazardous goods notification",
+            "description": {
+              "content": "Submits an IMDG dangerous goods declaration for hazardous cargo on a vessel call.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hazardous-cargo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vesselCallId\": \"<string>\",\n  \"imdgClass\": \"<string>\",\n  \"unNumber\": \"<string>\",\n  \"quantity\": \"<double>\",\n  \"containerNumber\": \"<string>\",\n  \"properShippingName\": \"<string>\",\n  \"quantityUnit\": \"<string>\",\n  \"packingGroup\": \"<string>\",\n  \"flashPoint\": \"<double>\",\n  \"emergencyContact\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "58ce0033-b378-4ca4-a961-a19c5e0e2d3b",
+              "name": "Hazardous cargo declaration submitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hazardous-cargo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vesselCallId\": \"<string>\",\n  \"imdgClass\": \"<string>\",\n  \"unNumber\": \"<string>\",\n  \"quantity\": \"<double>\",\n  \"containerNumber\": \"<string>\",\n  \"properShippingName\": \"<string>\",\n  \"quantityUnit\": \"<string>\",\n  \"packingGroup\": \"<string>\",\n  \"flashPoint\": \"<double>\",\n  \"emergencyContact\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0319f57c-b57a-4882-a908-b8adc4234995",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hazardous-cargo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vesselCallId\": \"<string>\",\n  \"imdgClass\": \"<string>\",\n  \"unNumber\": \"<string>\",\n  \"quantity\": \"<double>\",\n  \"containerNumber\": \"<string>\",\n  \"properShippingName\": \"<string>\",\n  \"quantityUnit\": \"<string>\",\n  \"packingGroup\": \"<string>\",\n  \"flashPoint\": \"<double>\",\n  \"emergencyContact\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.portbase.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "vessel-calls.read vessel-calls.write manifests.write customs.write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.portbase.com/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e4be6e92-c2c5-4cd8-8445-f69b7943f28e",
+    "name": "Portbase Port Community System CargoManifests HazardousCargo API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Portbase is the Dutch Port Community System providing APIs for customs declarations, cargo manifests, vessel call notifications, berth planning, and port logistics coordination at the Port of Rotterdam and Amsterdam, connecting shipping lines, freight forwarders, customs authorities, and terminal operators.\n\nContact Support:\n Name: Portbase Support",
+      "type": "text/plain"
+    }
+  }
+}

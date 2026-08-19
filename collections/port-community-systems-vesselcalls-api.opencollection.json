@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Portbase Port Community System CargoManifests VesselCalls API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.portbase.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "VesselCalls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List vessel calls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portbase.com/v1/vessel-calls",
+            "params": [
+              {
+                "name": "portCode",
+                "value": "",
+                "type": "query",
+                "description": "UN/LOCODE of the port (e.g., NLRTM for Rotterdam)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by vessel call status"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query",
+                "description": "Earliest expected arrival date"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns vessel call notifications for upcoming arrivals and departures at Dutch ports."
+        },
+        {
+          "info": {
+            "name": "Submit vessel call notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portbase.com/v1/vessel-calls",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a pre-arrival vessel call notification (PARN) to the port authority."
+        },
+        {
+          "info": {
+            "name": "Get vessel call",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portbase.com/v1/vessel-calls/:vesselCallId",
+            "params": [
+              {
+                "name": "vesselCallId",
+                "value": "",
+                "type": "path",
+                "description": "Portbase vessel call identifier"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific vessel call including berth allocation and status."
+        },
+        {
+          "info": {
+            "name": "Update vessel call",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.portbase.com/v1/vessel-calls/:vesselCallId",
+            "params": [
+              {
+                "name": "vesselCallId",
+                "value": "",
+                "type": "path",
+                "description": "Portbase vessel call identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a vessel call notification with revised arrival times or cargo information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

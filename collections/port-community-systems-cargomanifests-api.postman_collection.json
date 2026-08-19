@@ -1,0 +1,347 @@
+{
+  "item": [
+    {
+      "id": "d7560dfb-262a-4301-a403-7ce6b3d54e24",
+      "name": "CargoManifests",
+      "description": {
+        "content": "Cargo manifest declarations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "53216575-4375-4508-b428-fafe05dfcd98",
+          "name": "Submit cargo manifest",
+          "request": {
+            "name": "Submit cargo manifest",
+            "description": {
+              "content": "Submits a cargo manifest declaration for a vessel call, listing all cargo on board.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cargo-manifests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vesselCallId\": \"<string>\",\n  \"declarantId\": \"<string>\",\n  \"lines\": [\n    {\n      \"lineNumber\": \"<integer>\",\n      \"containerNumber\": \"<string>\",\n      \"billOfLadingNumber\": \"<string>\",\n      \"cargoDescription\": \"<string>\",\n      \"hsCode\": \"<string>\",\n      \"grossWeight\": \"<double>\",\n      \"grossWeightUnit\": \"<string>\",\n      \"packageCount\": \"<integer>\",\n      \"packageType\": \"<string>\",\n      \"portOfLoading\": \"<string>\",\n      \"portOfDischarge\": \"<string>\",\n      \"shipper\": \"<string>\",\n      \"consignee\": \"<string>\"\n    },\n    {\n      \"lineNumber\": \"<integer>\",\n      \"containerNumber\": \"<string>\",\n      \"billOfLadingNumber\": \"<string>\",\n      \"cargoDescription\": \"<string>\",\n      \"hsCode\": \"<string>\",\n      \"grossWeight\": \"<double>\",\n      \"grossWeightUnit\": \"<string>\",\n      \"packageCount\": \"<integer>\",\n      \"packageType\": \"<string>\",\n      \"portOfLoading\": \"<string>\",\n      \"portOfDischarge\": \"<string>\",\n      \"shipper\": \"<string>\",\n      \"consignee\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4907d510-2ff3-497b-84c8-34f585788396",
+              "name": "Manifest submitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cargo-manifests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vesselCallId\": \"<string>\",\n  \"declarantId\": \"<string>\",\n  \"lines\": [\n    {\n      \"lineNumber\": 4841,\n      \"containerNumber\": \"string\",\n      \"billOfLadingNumber\": \"string\",\n      \"cargoDescription\": \"string\",\n      \"hsCode\": \"string\",\n      \"grossWeight\": 2386.034744822306,\n      \"grossWeightUnit\": \"KG\",\n      \"packageCount\": 9833,\n      \"packageType\": \"string\",\n      \"portOfLoading\": \"string\",\n      \"portOfDischarge\": \"string\",\n      \"shipper\": \"string\",\n      \"consignee\": \"string\"\n    },\n    {\n      \"lineNumber\": 5595,\n      \"containerNumber\": \"string\",\n      \"billOfLadingNumber\": \"string\",\n      \"cargoDescription\": \"string\",\n      \"hsCode\": \"string\",\n      \"grossWeight\": 1221.6376581089362,\n      \"grossWeightUnit\": \"KG\",\n      \"packageCount\": 5787,\n      \"packageType\": \"string\",\n      \"portOfLoading\": \"string\",\n      \"portOfDischarge\": \"string\",\n      \"shipper\": \"string\",\n      \"consignee\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"manifestId\": \"string\",\n  \"vesselCallId\": \"string\",\n  \"declarantId\": \"string\",\n  \"submissionDatetime\": \"2019-10-06T01:51:06.195Z\",\n  \"status\": \"REJECTED\",\n  \"lines\": [\n    {\n      \"lineNumber\": 9361,\n      \"containerNumber\": \"string\",\n      \"billOfLadingNumber\": \"string\",\n      \"cargoDescription\": \"string\",\n      \"hsCode\": \"string\",\n      \"grossWeight\": 130.09138742430926,\n      \"grossWeightUnit\": \"MT\",\n      \"packageCount\": 9514,\n      \"packageType\": \"string\",\n      \"portOfLoading\": \"string\",\n      \"portOfDischarge\": \"string\",\n      \"shipper\": \"string\",\n      \"consignee\": \"string\"\n    },\n    {\n      \"lineNumber\": 3980,\n      \"containerNumber\": \"string\",\n      \"billOfLadingNumber\": \"string\",\n      \"cargoDescription\": \"string\",\n      \"hsCode\": \"string\",\n      \"grossWeight\": 1643.1972030569807,\n      \"grossWeightUnit\": \"KG\",\n      \"packageCount\": 5855,\n      \"packageType\": \"string\",\n      \"portOfLoading\": \"string\",\n      \"portOfDischarge\": \"string\",\n      \"shipper\": \"string\",\n      \"consignee\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e30e7f0-ac6e-4421-aed8-83a435d59013",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cargo-manifests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vesselCallId\": \"<string>\",\n  \"declarantId\": \"<string>\",\n  \"lines\": [\n    {\n      \"lineNumber\": 4841,\n      \"containerNumber\": \"string\",\n      \"billOfLadingNumber\": \"string\",\n      \"cargoDescription\": \"string\",\n      \"hsCode\": \"string\",\n      \"grossWeight\": 2386.034744822306,\n      \"grossWeightUnit\": \"KG\",\n      \"packageCount\": 9833,\n      \"packageType\": \"string\",\n      \"portOfLoading\": \"string\",\n      \"portOfDischarge\": \"string\",\n      \"shipper\": \"string\",\n      \"consignee\": \"string\"\n    },\n    {\n      \"lineNumber\": 5595,\n      \"containerNumber\": \"string\",\n      \"billOfLadingNumber\": \"string\",\n      \"cargoDescription\": \"string\",\n      \"hsCode\": \"string\",\n      \"grossWeight\": 1221.6376581089362,\n      \"grossWeightUnit\": \"KG\",\n      \"packageCount\": 5787,\n      \"packageType\": \"string\",\n      \"portOfLoading\": \"string\",\n      \"portOfDischarge\": \"string\",\n      \"shipper\": \"string\",\n      \"consignee\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9fe77106-586d-4bf6-b5ae-35dcb49a0b72",
+          "name": "Get cargo manifest",
+          "request": {
+            "name": "Get cargo manifest",
+            "description": {
+              "content": "Returns a cargo manifest with all cargo lines and customs status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cargo-manifests",
+                ":manifestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "manifestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3634797a-f051-435f-af6c-8da37a4c712a",
+              "name": "Cargo manifest details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cargo-manifests",
+                    ":manifestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "manifestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"manifestId\": \"string\",\n  \"vesselCallId\": \"string\",\n  \"declarantId\": \"string\",\n  \"submissionDatetime\": \"2019-10-06T01:51:06.195Z\",\n  \"status\": \"REJECTED\",\n  \"lines\": [\n    {\n      \"lineNumber\": 9361,\n      \"containerNumber\": \"string\",\n      \"billOfLadingNumber\": \"string\",\n      \"cargoDescription\": \"string\",\n      \"hsCode\": \"string\",\n      \"grossWeight\": 130.09138742430926,\n      \"grossWeightUnit\": \"MT\",\n      \"packageCount\": 9514,\n      \"packageType\": \"string\",\n      \"portOfLoading\": \"string\",\n      \"portOfDischarge\": \"string\",\n      \"shipper\": \"string\",\n      \"consignee\": \"string\"\n    },\n    {\n      \"lineNumber\": 3980,\n      \"containerNumber\": \"string\",\n      \"billOfLadingNumber\": \"string\",\n      \"cargoDescription\": \"string\",\n      \"hsCode\": \"string\",\n      \"grossWeight\": 1643.1972030569807,\n      \"grossWeightUnit\": \"KG\",\n      \"packageCount\": 5855,\n      \"packageType\": \"string\",\n      \"portOfLoading\": \"string\",\n      \"portOfDischarge\": \"string\",\n      \"shipper\": \"string\",\n      \"consignee\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f58616a5-95e4-4ddd-af96-848d3fa2dc61",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cargo-manifests",
+                    ":manifestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "manifestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.portbase.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "vessel-calls.read vessel-calls.write manifests.write customs.write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.portbase.com/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "42fe4493-97c1-4386-b5c3-e976fcc8df54",
+    "name": "Portbase Port Community System CargoManifests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Portbase is the Dutch Port Community System providing APIs for customs declarations, cargo manifests, vessel call notifications, berth planning, and port logistics coordination at the Port of Rotterdam and Amsterdam, connecting shipping lines, freight forwarders, customs authorities, and terminal operators.\n\nContact Support:\n Name: Portbase Support",
+      "type": "text/plain"
+    }
+  }
+}

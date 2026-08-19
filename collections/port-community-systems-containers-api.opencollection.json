@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Portbase Port Community System CargoManifests Containers API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.portbase.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Containers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get container status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portbase.com/v1/containers/:containerId",
+            "params": [
+              {
+                "name": "containerId",
+                "value": "",
+                "type": "path",
+                "description": "Container number (ISO 6346 format, e.g. MSCU1234567)"
+              }
+            ]
+          },
+          "docs": "Returns tracking information and inspection status for a shipping container."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

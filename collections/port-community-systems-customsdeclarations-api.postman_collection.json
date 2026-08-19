@@ -1,0 +1,202 @@
+{
+  "item": [
+    {
+      "id": "7331538a-0f6b-47d4-8fb0-9097f0510b37",
+      "name": "CustomsDeclarations",
+      "description": {
+        "content": "Import and export customs filings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e8cc6056-3427-476b-972a-8bd096263748",
+          "name": "Submit import customs declaration",
+          "request": {
+            "name": "Submit import customs declaration",
+            "description": {
+              "content": "Submits an electronic import declaration (EID) to Dutch customs via Portbase.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customs",
+                "import-declarations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"manifestId\": \"<string>\",\n  \"declarantId\": \"<string>\",\n  \"consigneeId\": \"<string>\",\n  \"lines\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c53641b-9afa-487a-9d6f-90b0f605c29b",
+              "name": "Declaration submitted to customs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customs",
+                    "import-declarations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"manifestId\": \"<string>\",\n  \"declarantId\": \"<string>\",\n  \"consigneeId\": \"<string>\",\n  \"lines\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"declarationId\": \"string\",\n  \"declarationType\": \"TRANSIT\",\n  \"mrn\": \"string\",\n  \"status\": \"CONTROLLED\",\n  \"submissionDatetime\": \"1953-03-06T22:56:26.839Z\",\n  \"releaseStatus\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b80dd342-87f9-416c-8f62-626f0429caa4",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customs",
+                    "import-declarations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"manifestId\": \"<string>\",\n  \"declarantId\": \"<string>\",\n  \"consigneeId\": \"<string>\",\n  \"lines\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.portbase.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "vessel-calls.read vessel-calls.write manifests.write customs.write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.portbase.com/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ca0386c2-cae9-4025-88b3-1b9f115ef7a9",
+    "name": "Portbase Port Community System CargoManifests CustomsDeclarations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Portbase is the Dutch Port Community System providing APIs for customs declarations, cargo manifests, vessel call notifications, berth planning, and port logistics coordination at the Port of Rotterdam and Amsterdam, connecting shipping lines, freight forwarders, customs authorities, and terminal operators.\n\nContact Support:\n Name: Portbase Support",
+      "type": "text/plain"
+    }
+  }
+}

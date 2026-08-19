@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Portbase Port Community System CargoManifests API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.portbase.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CargoManifests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit cargo manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portbase.com/v1/cargo-manifests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a cargo manifest declaration for a vessel call, listing all cargo on board."
+        },
+        {
+          "info": {
+            "name": "Get cargo manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portbase.com/v1/cargo-manifests/:manifestId",
+            "params": [
+              {
+                "name": "manifestId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a cargo manifest with all cargo lines and customs status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,197 @@
+{
+  "item": [
+    {
+      "id": "8cb1c7ea-d73c-4464-8f31-263d70bb6d06",
+      "name": "Containers",
+      "description": {
+        "content": "Container tracking and inspection",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ee31b4ac-0d1f-4461-9fa1-c3e6d35c5e41",
+          "name": "Get container status",
+          "request": {
+            "name": "Get container status",
+            "description": {
+              "content": "Returns tracking information and inspection status for a shipping container.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "containers",
+                ":containerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "containerId",
+                  "description": "(Required) Container number (ISO 6346 format, e.g. MSCU1234567)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f8b398a7-931b-4066-8b3e-464bc3e4505a",
+              "name": "Container details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "containers",
+                    ":containerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "containerId",
+                      "description": "(Required) Container number (ISO 6346 format, e.g. MSCU1234567)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"containerNumber\": \"string\",\n  \"isoType\": \"string\",\n  \"status\": \"AT_TERMINAL\",\n  \"terminalCode\": \"string\",\n  \"vesselCallId\": \"string\",\n  \"customsStatus\": \"BLOCKED\",\n  \"inspectionStatus\": \"CLEARED\",\n  \"lastUpdateDatetime\": \"1986-03-06T09:09:44.917Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "949ad48b-c232-43b9-8896-d75779828200",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "containers",
+                    ":containerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "containerId",
+                      "description": "(Required) Container number (ISO 6346 format, e.g. MSCU1234567)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.portbase.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "vessel-calls.read vessel-calls.write manifests.write customs.write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.portbase.com/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "53fe48ec-9e07-4c91-9f2a-f95496719192",
+    "name": "Portbase Port Community System CargoManifests Containers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Portbase is the Dutch Port Community System providing APIs for customs declarations, cargo manifests, vessel call notifications, berth planning, and port logistics coordination at the Port of Rotterdam and Amsterdam, connecting shipping lines, freight forwarders, customs authorities, and terminal operators.\n\nContact Support:\n Name: Portbase Support",
+      "type": "text/plain"
+    }
+  }
+}
