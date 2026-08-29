@@ -1,0 +1,52 @@
+slug: port-community-systems
+provider: Port Community Systems
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Transportation & Logistics
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: CustomsDeclarations
+  spec_file: port-community-systems-customsdeclarations-api-openapi.yml
+  capability_id: BC-2480.20
+  capability_id_l1: BC-2480
+  capability_name: Customs Declaration Management
+  confidence: 0.95
+  evidence: POST /customs/import-declarations submitImportDeclaration 'Submit import customs declaration'
+  reason: Filing of import declarations with customs authorities is plainly Customs Declaration Management.
+- tag: CargoManifests
+  spec_file: port-community-systems-cargomanifests-api-openapi.yml
+  capability_id: BC-2500.40
+  capability_id_l1: BC-2500
+  capability_name: Manifest and Cargo Declaration Management
+  confidence: 0.92
+  evidence: POST /cargo-manifests submitCargoManifest 'Submit cargo manifest'; schemas CargoManifest,
+    CargoManifestLine
+  reason: Submission and retrieval of cargo manifests to the port community system is manifest and cargo
+    declaration management.
+- tag: HazardousCargo
+  spec_file: port-community-systems-hazardouscargo-api-openapi.yml
+  capability_id: BC-2490.20
+  capability_id_l1: BC-2490
+  capability_name: Dangerous Goods Documentation Management
+  confidence: 0.75
+  evidence: POST /hazardous-cargo submitHazardousCargoDeclaration 'Submit hazardous goods notification'
+  reason: Submission of a hazardous goods declaration/notification is dangerous-goods documentation; some
+    chance it is better read as acceptance review, hence 0.75.
+- tag: VesselCalls
+  spec_file: port-community-systems-vesselcalls-api-openapi.yml
+  capability_id: BC-2470.10
+  capability_id_l1: BC-2470
+  capability_name: Vessel and Aircraft Handling Management
+  confidence: 0.7
+  evidence: POST /vessel-calls createVesselCall 'Submit vessel call notification'; schemas BerthPlan,
+    VesselCallDetail
+  reason: Vessel call notifications with an associated berth plan concern berthing and vessel handling
+    at the terminal; L2 choice between vessel handling and terminal capacity is somewhat uncertain.

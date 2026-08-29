@@ -144,6 +144,9 @@ apis:
   - type: JSONLDContext
     url: json-ld/portbase-context.jsonld
 common:
+  - type: CapabilityMap
+    url: capabilities/port-community-systems-capability-edges.yml
+    name: Port Community Systems Business Capability Map
   - type: AgenticAccess
     url: agentic-access/port-community-systems-agentic-access.yml
   - type: DomainSecurity
