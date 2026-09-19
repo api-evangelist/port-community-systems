@@ -32,6 +32,13 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/port-community-systems.png
 tags:
   - Maritime
+  - Ports
+  - Logistics
+  - Customs
+  - Cargo
+  - Shipping
+tags_raw:
+  - Maritime
   - Port
   - Logistics
   - Customs
@@ -50,6 +57,12 @@ apis:
     cargo manifests, vessel call data, and port logistics coordination using REST and EDIFACT protocols.
   humanURL: https://www.ipcsa.international/
   tags:
+  - Maritime
+  - Ports
+  - Customs
+  - Cargo
+  - International
+  tags_raw:
   - Maritime
   - Port
   - Customs
