@@ -1,11 +1,7 @@
 {
   "provider": "port-community-systems",
   "sources": [
-    "port-community-systems-cargomanifests-api-openapi.yml",
-    "port-community-systems-containers-api-openapi.yml",
-    "port-community-systems-customsdeclarations-api-openapi.yml",
-    "port-community-systems-hazardouscargo-api-openapi.yml",
-    "port-community-systems-vesselcalls-api-openapi.yml"
+    "_original/portbase-port-community-openapi.yml"
   ],
   "outputs": [
     "port-community-systems-cargomanifests-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "portbase-port-community-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "port-community-systems-cargomanifests-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "port-community-systems-containers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "port-community-systems-customsdeclarations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "port-community-systems-hazardouscargo-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "port-community-systems-vesselcalls-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
