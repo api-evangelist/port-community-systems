@@ -64,6 +64,31 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    CargoManifest:
+      type: object
+      properties:
+        manifestId:
+          type: string
+        vesselCallId:
+          type: string
+        declarantId:
+          type: string
+          description: EORI number of the declarant
+        submissionDatetime:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - DRAFT
+          - SUBMITTED
+          - ACCEPTED
+          - REJECTED
+          - RELEASED
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/CargoManifestLine'
     CargoManifestCreate:
       type: object
       required:
@@ -115,31 +140,6 @@ components:
           type: string
         consignee:
           type: string
-    CargoManifest:
-      type: object
-      properties:
-        manifestId:
-          type: string
-        vesselCallId:
-          type: string
-        declarantId:
-          type: string
-          description: EORI number of the declarant
-        submissionDatetime:
-          type: string
-          format: date-time
-        status:
-          type: string
-          enum:
-          - DRAFT
-          - SUBMITTED
-          - ACCEPTED
-          - REJECTED
-          - RELEASED
-        lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/CargoManifestLine'
     Error:
       type: object
       properties:
@@ -152,14 +152,14 @@ components:
           items:
             type: string
   responses:
-    BadRequest:
-      description: Invalid request
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
+    BadRequest:
+      description: Invalid request
       content:
         application/json:
           schema:
