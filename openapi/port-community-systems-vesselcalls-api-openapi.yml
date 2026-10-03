@@ -143,6 +143,46 @@ paths:
                 $ref: '#/components/schemas/VesselCall'
 components:
   schemas:
+    VesselCallUpdate:
+      type: object
+      properties:
+        eta:
+          type: string
+          format: date-time
+        etd:
+          type: string
+          format: date-time
+        terminalCode:
+          type: string
+        status:
+          type: string
+          enum:
+          - EXPECTED
+          - ARRIVED
+          - DEPARTED
+          - CANCELLED
+    VesselCallDetail:
+      allOf:
+      - $ref: '#/components/schemas/VesselCall'
+      - type: object
+        properties:
+          berthPlan:
+            $ref: '#/components/schemas/BerthPlan'
+          cargoManifestIds:
+            type: array
+            items:
+              type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
     VesselCallCreate:
       type: object
       required:
@@ -249,61 +289,7 @@ components:
           type: boolean
         tugAssistance:
           type: boolean
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: string
-    VesselCallUpdate:
-      type: object
-      properties:
-        eta:
-          type: string
-          format: date-time
-        etd:
-          type: string
-          format: date-time
-        terminalCode:
-          type: string
-        status:
-          type: string
-          enum:
-          - EXPECTED
-          - ARRIVED
-          - DEPARTED
-          - CANCELLED
-    VesselCallDetail:
-      allOf:
-      - $ref: '#/components/schemas/VesselCall'
-      - type: object
-        properties:
-          berthPlan:
-            $ref: '#/components/schemas/BerthPlan'
-          cargoManifestIds:
-            type: array
-            items:
-              type: string
-  parameters:
-    VesselCallId:
-      name: vesselCallId
-      in: path
-      required: true
-      description: Portbase vessel call identifier
-      schema:
-        type: string
   responses:
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Resource not found
       content:
@@ -316,6 +302,20 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    VesselCallId:
+      name: vesselCallId
+      in: path
+      required: true
+      description: Portbase vessel call identifier
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2

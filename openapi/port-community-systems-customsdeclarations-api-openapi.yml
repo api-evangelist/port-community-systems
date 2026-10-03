@@ -42,6 +42,34 @@ paths:
           $ref: '#/components/responses/BadRequest'
 components:
   schemas:
+    CustomsDeclaration:
+      type: object
+      properties:
+        declarationId:
+          type: string
+        declarationType:
+          type: string
+          enum:
+          - IMPORT
+          - EXPORT
+          - TRANSIT
+        mrn:
+          type: string
+          description: Movement Reference Number from customs
+        status:
+          type: string
+          enum:
+          - PENDING
+          - ACCEPTED
+          - CONTROLLED
+          - RELEASED
+          - REJECTED
+        submissionDatetime:
+          type: string
+          format: date-time
+        releaseStatus:
+          type: string
+          nullable: true
     Error:
       type: object
       properties:
@@ -73,34 +101,6 @@ components:
           type: array
           items:
             type: object
-    CustomsDeclaration:
-      type: object
-      properties:
-        declarationId:
-          type: string
-        declarationType:
-          type: string
-          enum:
-          - IMPORT
-          - EXPORT
-          - TRANSIT
-        mrn:
-          type: string
-          description: Movement Reference Number from customs
-        status:
-          type: string
-          enum:
-          - PENDING
-          - ACCEPTED
-          - CONTROLLED
-          - RELEASED
-          - REJECTED
-        submissionDatetime:
-          type: string
-          format: date-time
-        releaseStatus:
-          type: string
-          nullable: true
   responses:
     BadRequest:
       description: Invalid request
