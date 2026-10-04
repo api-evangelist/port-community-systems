@@ -64,6 +64,21 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    CargoManifestCreate:
+      type: object
+      required:
+      - vesselCallId
+      - declarantId
+      - lines
+      properties:
+        vesselCallId:
+          type: string
+        declarantId:
+          type: string
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/CargoManifestLine'
     CargoManifestLine:
       type: object
       properties:
@@ -100,17 +115,6 @@ components:
           type: string
         consignee:
           type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: string
     CargoManifest:
       type: object
       properties:
@@ -136,21 +140,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CargoManifestLine'
-    CargoManifestCreate:
+    Error:
       type: object
-      required:
-      - vesselCallId
-      - declarantId
-      - lines
       properties:
-        vesselCallId:
+        code:
           type: string
-        declarantId:
+        message:
           type: string
-        lines:
+        details:
           type: array
           items:
-            $ref: '#/components/schemas/CargoManifestLine'
+            type: string
   responses:
     NotFound:
       description: Resource not found

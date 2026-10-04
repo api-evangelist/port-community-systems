@@ -142,7 +142,37 @@ paths:
               schema:
                 $ref: '#/components/schemas/VesselCall'
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    VesselCallDetail:
+      allOf:
+      - $ref: '#/components/schemas/VesselCall'
+      - type: object
+        properties:
+          berthPlan:
+            $ref: '#/components/schemas/BerthPlan'
+          cargoManifestIds:
+            type: array
+            items:
+              type: string
     VesselCallUpdate:
       type: object
       properties:
@@ -161,17 +191,23 @@ components:
           - ARRIVED
           - DEPARTED
           - CANCELLED
-    VesselCallDetail:
-      allOf:
-      - $ref: '#/components/schemas/VesselCall'
-      - type: object
-        properties:
-          berthPlan:
-            $ref: '#/components/schemas/BerthPlan'
-          cargoManifestIds:
-            type: array
-            items:
-              type: string
+    BerthPlan:
+      type: object
+      properties:
+        berthId:
+          type: string
+        berthName:
+          type: string
+        plannedArrival:
+          type: string
+          format: date-time
+        plannedDeparture:
+          type: string
+          format: date-time
+        bollardFrom:
+          type: integer
+        bollardTo:
+          type: integer
     Error:
       type: object
       properties:
@@ -214,23 +250,6 @@ components:
         pilotageRequired:
           type: boolean
           default: true
-    BerthPlan:
-      type: object
-      properties:
-        berthId:
-          type: string
-        berthName:
-          type: string
-        plannedArrival:
-          type: string
-          format: date-time
-        plannedDeparture:
-          type: string
-          format: date-time
-        bollardFrom:
-          type: integer
-        bollardTo:
-          type: integer
     VesselCall:
       type: object
       description: A vessel arrival/departure call at a Dutch port
@@ -289,25 +308,6 @@ components:
           type: boolean
         tugAssistance:
           type: boolean
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     VesselCallId:
       name: vesselCallId
