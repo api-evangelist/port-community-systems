@@ -1,4 +1,4 @@
-# Port Community Systems (port-community-systems)
+# Port Community Systems
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,79 +66,164 @@
 
 Port Community Systems (PCS) are neutral and open electronic platforms enabling intelligent and secure exchange of information between public and private stakeholders to optimise, manage, and automate efficient port and logistics processes through a single submission of data.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/port-community-systems/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/port-community-systems/refs/heads/main/apis.yml)
+**Areas:** Maritime · Ports · Logistics · Customs · Cargo · Shipping
 
-## Scope
+## Port Community Systems on APIs.io
 
-- **Type:** Index
+Everything profiled for Port Community Systems is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/port-community-systems/](https://apis.io/providers/port-community-systems/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (6)
 
-- Maritime
-- Port
-- Logistics
-- Customs
-- Cargo
-- Shipping
+- [IPCSA Port Community Systems API](https://apis.io/apis/port-community-systems/ipcsa/) — The International Port Community Systems Association (IPCSA) represents Port Community System operators and Maritime Single Window operators worldwide.…
+- [Port Community Systems CargoManifests API](https://apis.io/apis/port-community-systems/port-community-systems-cargomanifests-api/) — Cargo manifest declarations
+- [Port Community Systems Containers API](https://apis.io/apis/port-community-systems/port-community-systems-containers-api/) — Container tracking and inspection
+- [Port Community Systems CustomsDeclarations API](https://apis.io/apis/port-community-systems/port-community-systems-customsdeclarations-api/) — Import and export customs filings
+- [Port Community Systems HazardousCargo API](https://apis.io/apis/port-community-systems/port-community-systems-hazardouscargo-api/) — Dangerous goods declarations
+- [Port Community Systems VesselCalls API](https://apis.io/apis/port-community-systems/port-community-systems-vesselcalls-api/) — Vessel arrival and departure notifications
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-18
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### Portbase Port Community System API
+Event-driven and webhook contracts.
 
-Portbase is the Dutch Port Community System providing APIs for customs declarations, cargo manifests, vessel call notifications, berth planning, and port logistics coordination at the Port of Rotterdam and Amsterdam, connecting shipping lines, freight forwarders, customs authorities, and terminal operators.
+- [Portbase Vessel Events API](https://apis.io/asyncapis/port-community-systems/portbase-vessel-events-asyncapi/)
 
-- **Human URL:** [https://www.portbase.com/en/](https://www.portbase.com/en/)
+#### Event channels (4)
 
-#### Tags
+Individual events and webhooks the provider emits.
 
-- Maritime
-- Port
-- Customs
-- Cargo
-- Netherlands
+- [cargo-manifest/accepted](https://apis.io/channels/port-community-systems/cargo-manifest-accepted/)
+- [container/customs-released](https://apis.io/channels/port-community-systems/container-customs-released/)
+- [container/gate-out](https://apis.io/channels/port-community-systems/container-gate-out/)
+- [vessel-call/status-changed](https://apis.io/channels/port-community-systems/vessel-call-status-changed/)
 
-#### Properties
+#### Agentic access (1)
 
-- [Documentation](https://www.portbase.com/en/)
-- [OpenAPI](openapi/portbase-port-community-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/portbase-port-community.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/portbase-port-community.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/portbase-vessel-events-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [JSON Schema](json-schema/portbase-vessel-call-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](json-ld/portbase-context.jsonld)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### IPCSA Port Community Systems API
+- [Port Community Systems Agentic Access](https://apis.io/agentic-access/port-community-systems/port-community-systems-agentic-access/)
 
-The International Port Community Systems Association (IPCSA) represents Port Community System operators and Maritime Single Window operators worldwide. Member PCS platforms provide APIs for customs declarations, cargo manifests, vessel call data, and port logistics coordination using REST and EDIFACT protocols.
+#### JSON Schema (1)
 
-- **Human URL:** [https://www.ipcsa.international/](https://www.ipcsa.international/)
+The data models the API reads and writes.
 
-#### Tags
+- [Portbase Vessel Call](https://apis.io/schemas/port-community-systems/portbase-vessel-call/)
 
-- Maritime
-- Port
-- Customs
-- Cargo
-- International
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://www.ipcsa.international/)
-- [Postman Collection](collections/portbase-port-community.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/portbase-port-community.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Portbase Context](https://apis.io/jsonld/port-community-systems/portbase-context/)
 
-## Common Properties
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Portbase Port Community System CargoManifests API](https://apis.io/collections/port-community-systems/open-port-community-systems-cargomanifests-api/)
+- [Portbase Port Community System CargoManifests Containers API](https://apis.io/collections/port-community-systems/open-port-community-systems-containers-api/)
+- [Portbase Port Community System CargoManifests CustomsDeclarations API](https://apis.io/collections/port-community-systems/open-port-community-systems-customsdeclarations-api/)
+- [Portbase Port Community System CargoManifests HazardousCargo API](https://apis.io/collections/port-community-systems/open-port-community-systems-hazardouscargo-api/)
+- [Portbase Port Community System CargoManifests VesselCalls API](https://apis.io/collections/port-community-systems/open-port-community-systems-vesselcalls-api/)
+- [Portbase Port Community System API](https://apis.io/collections/port-community-systems/open-portbase-port-community/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Port Community Systems — asyncapi rules](https://apis.io/rules/port-community-systems/port-community-systems-asyncapi-spectral-rules/)
+- [Port Community Systems — jsonschema rules](https://apis.io/rules/port-community-systems/port-community-systems-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Port Community Systems Authentication](https://apis.io/security/port-community-systems/port-community-systems-authentication/)
+- [Port Community Systems Domain Security](https://apis.io/security/port-community-systems/port-community-systems-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Port Community Systems Scopes](https://apis.io/scopes/port-community-systems/port-community-systems-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Port Community Systems Plans Pricing](https://apis.io/plans/port-community-systems/port-community-systems-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Port Community Systems Rate Limits](https://apis.io/rate-limits/port-community-systems/port-community-systems-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Port Community Systems Finops](https://apis.io/finops/port-community-systems/port-community-systems-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.ipcsa.international/)
-- [Portal](https://www.ipcsa.international/)
 - [Documentation](https://www.ipcsa.international/)
+- [Blog](https://www.portbase.com/en/news-knowledge/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 34.6** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 68.1 |
+| Contract governance | 13.6 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 7.9 |
+
+**Agent readiness 21.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 26.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/port-community-systems/](https://apis.io/providers/port-community-systems/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Port Community Systems: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/port-community-systems/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
